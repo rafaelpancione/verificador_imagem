@@ -9,6 +9,7 @@ export function ImageChecker() {
   const [results, setResults] = useState<ImageResult[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [directoryHandle, setDirectoryHandle] = useState<FileSystemDirectoryHandle | null>(null);
+  const [noIssuesMessage, setNoIssuesMessage] = useState(false);
 
   const handleDirectorySelect = async () => {
     try {
@@ -23,9 +24,13 @@ export function ImageChecker() {
     if (!directoryHandle) return;
 
     setIsProcessing(true);
+    setNoIssuesMessage(false); // Resetar mensagem antes da nova verificação
     try {
       const imageResults = await processDirectory(directoryHandle);
       setResults(imageResults);
+      if (imageResults.length === 0) {
+        setNoIssuesMessage(true); // Ativar a mensagem se não houverem imagens com problemas
+      }
     } catch (error) {
       console.error('Erro ao processar diretório:', error);
     } finally {
@@ -55,6 +60,7 @@ export function ImageChecker() {
   const handleNewAnalysis = () => {
     setResults([]);            // Limpa os resultados
     setDirectoryHandle(null);   // Reseta o diretório selecionado
+    setNoIssuesMessage(false);  // Reseta a mensagem
   };
 
   return (
@@ -117,7 +123,15 @@ export function ImageChecker() {
         </div>
       </div>
 
-      {results.length > 0 && <ResultsTable results={results} />}
+      {results.length > 0 ? (
+        <ResultsTable results={results} />
+      ) : (
+        noIssuesMessage && (
+          <p className="text-sm text-gray-600">
+            Verificação concluída, não foram encontradas imagens com problemas ou o diretório informado não possui imagens.
+          </p>
+        )
+      )}
     </div>
   );
 }
