@@ -37,7 +37,7 @@ Antes de iniciar, certifique-se de ter o [Node.js](https://nodejs.org/) instalad
 ## 🚀 Instalação e Execução
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/verificador-imagens.git
+   git clone [https://github.com/rafaelpancione/verificador_imagem]
    ```
    
 2. **Navegue até o diretório do projeto:**
