@@ -67,4 +67,3 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues para bugs
 ---
 
 Feito com ❤️ pela equipe da Gameficare Studios
-```
