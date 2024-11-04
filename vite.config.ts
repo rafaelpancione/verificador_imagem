@@ -4,5 +4,5 @@ import ghPages from 'vite-plugin-gh-pages';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/verificador_imagens/', // Substitua pelo nome do seu repositório
+  base: '/verificador_imagem/', // Substitua pelo nome do seu repositório
 });
